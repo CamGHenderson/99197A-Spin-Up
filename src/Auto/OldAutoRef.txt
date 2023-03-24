@@ -1,0 +1,83 @@
+#include "FarAuto.h"
+#include "AutoTasks.h"
+
+#define OFFSET 5000
+
+FarAuto::FarAuto(Robot& robot, uint8_t color) : AutoProgram(robot)
+{
+	addTask(new ReadyToFire(2750), 0);
+	// 1250
+	addTask(new Fire(), 1250);
+	// 3250
+	addTask(new Fire(), 4500);
+	// 500
+	addTask(new Load(), 5000);
+	
+	
+	// 0
+	// TODO Add Drive Forward
+	addTask(new DriveLeft(125), 0 + OFFSET);
+	// 0
+	addTask(new DriveRight(125), 1 + OFFSET);
+	
+	
+	
+	//  775
+	// TODO Add Drive Forward
+	addTask(new DriveLeft(0), 775 + OFFSET);
+	// 0
+	addTask(new DriveRight(0), 776 + OFFSET);
+	
+	
+	// turn
+	// 525
+	addTask(new DriveLeft(-25), 1300 + OFFSET);
+	// 0
+	addTask(new DriveRight(25), 1301 + OFFSET);
+	
+	// turn stop
+	// 1350
+	addTask(new DriveLeft(0), 2650 + OFFSET);
+	// 0
+	addTask(new DriveRight(0), 2651 + OFFSET);
+	
+	// backwards
+	// 150
+	addTask(new DriveLeft(-125), 2800 + OFFSET);
+	// 0
+	addTask(new DriveRight(-125), 2801 + OFFSET);
+	
+	
+	// 900
+	addTask(new DriveLeft(0), 3700 + OFFSET);
+	// 0
+	addTask(new DriveRight(0), 3701 + OFFSET);
+	
+	// 1500
+	addTask(new DriveLeft(50), 5200 + OFFSET);
+	// 0
+	addTask(new DriveRight(-50), 5201 + OFFSET);
+	
+	// turn stop
+	// 350
+	addTask(new DriveLeft(0), 5550 + OFFSET);
+	// 0
+	addTask(new DriveRight(0), 5551 + OFFSET);
+	
+	// shift right
+	// 450
+	addTask(new DriveRight(-25), 6000 + OFFSET);
+	// 0
+	addTask(new DriveLeft(-50), 6001 + OFFSET);
+	// 0
+	addTask(new DriveIntake(12000), 6002 + OFFSET);
+	
+	// 1000
+	addTask(new DriveRight(0), 7000 + OFFSET);
+	// 0
+	addTask(new DriveLeft(0), 7001 + OFFSET);
+	// 0
+	addTask(new IntakeOff, 7002 + OFFSET);
+	
+	addTask(new Wait(), 10000);
+}
